@@ -54,6 +54,9 @@ jobs:
           name: public-package
           path: public
 
+      - name: Check files
+        run: ls
+
       #- name: copy public to ubuntu
       #  uses: mdallasanta/ssh-scp-deploy@v1.2.0
       #  with:
