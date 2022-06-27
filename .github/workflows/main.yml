@@ -50,7 +50,7 @@ jobs:
         run: ls -la public.zip
 
       - name: Upload to jfrog
-        run: curl -H "X-JFrog-Art-Api:AKCp8mZT7Zbv2H9T1GXohfyXKv9c7Fi3Mvpctjh4T3pHnei9J1AEjgaevS5v8XBb6mNLK36Mx" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/a"
+        run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public"
   
   deploy:
     name: Deploy
@@ -65,6 +65,9 @@ jobs:
 
       - name: Check files
         run: ls
+
+      - name: Download from jfrog
+        run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public"
 
       #- name: copy public to ubuntu
       #  uses: mdallasanta/ssh-scp-deploy@v1.2.0
