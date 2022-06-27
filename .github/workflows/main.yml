@@ -32,7 +32,7 @@ jobs:
 
       - name: Publish the .NET Project
         run: |
-          dotnet publish -c Release -o Public
+          dotnet publish -c Release -o public
 
       - name: Verify Public folder
         run: ls -la public
