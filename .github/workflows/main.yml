@@ -66,9 +66,6 @@ jobs:
       #    name: public-package
       #    path: public
 
-      - name: Check files
-        run: ls
-
       - name: Download from jfrog
         run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
 
