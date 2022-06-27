@@ -42,6 +42,15 @@ jobs:
         with:
           name: public-package
           path: public
+
+      - name: Zip the public folder
+        run: zip -r public.zip public/
+
+      - name: Check weather Zip file is created or not
+        run: ls -la public.zip
+
+      - name: Upload to jfrog
+        run: curl -H "X-JFrog-Art-Api:AKCp8mZT7Zbv2H9T1GXohfyXKv9c7Fi3Mvpctjh4T3pHnei9J1AEjgaevS5v8XBb6mNLK36Mx" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/a"
   
   deploy:
     name: Deploy
