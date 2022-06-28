@@ -87,7 +87,7 @@ jobs:
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
-          local: "public-${{env.GITHUBRUNNERID}}.zip"
+          local: public-${{env.GITHUBRUNNERID}}.zip
           #local: 'public.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
           remote: 'public/'                                                 # Remote file path - REQUIRED false - DEFAULT ~/
           host: ${{secrets.REMOTE_HOST}}                                      # Remote server address - REQUIRED true
