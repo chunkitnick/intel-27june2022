@@ -56,7 +56,7 @@ jobs:
       - name: Install JFrog CLI
         run: |
           powershell "Start-Process -Wait -Verb RunAs powershell '-NoProfile iwr https://releases.jfrog.io/artifactory/jfrog-cli/v2-jf/[RELEASE]/jfrog-cli-windows-amd64/jf.exe -OutFile $env:SYSTEMROOT\system32\jf.exe'"
-          jfrog rt c show
+          jfrog --help
 
       - name: Run JFrog CLI
         run: |
