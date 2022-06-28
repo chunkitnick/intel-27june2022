@@ -80,17 +80,17 @@ jobs:
       #    unzip public-$GITHUB_RUN_NUMBER.zip
       #    ls
 
-      - name: Zip the Public Folder
-        run: |
-          zip -r public.zip public/
-          pwd
-          ls
+      #- name: Zip the Public Folder
+      #  run: |
+      #    zip -r public.zip public/
+      #    pwd
+      #    ls
 
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
           #local: "public-$GITHUB_RUN_NUMBER.zip"
-          local: 'public/*'                                                  # Local file path - REQUIRED false - DEFAULT ./
+          local: 'public.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
           remote: 'public/'                                                 # Remote file path - REQUIRED false - DEFAULT ~/
           host: ${{secrets.REMOTE_HOST}}                                      # Remote server address - REQUIRED true
           #port: ${{secrets.PORT}}                                      # Remote server port - REQUIRED false - DEFAULT 22
@@ -101,5 +101,5 @@ jobs:
           #post_upload: dir  # Command to run via ssh after scp upload - REQUIRED false
           ssh_options: -o StrictHostKeyChecking=no                     # A set of ssh_option separated by -o - REQUIRED false - DEFAULT -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
           #scp_options: -v
-          pre_upload: rmdir /s /q public
+          pre_upload: powershell Remove-Item public/* -force -recurse
           post_upload: iisreset /stop && xcopy /s /y public C:\inetpub\wwwroot\ && iisreset /start
