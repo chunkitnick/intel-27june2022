@@ -17,8 +17,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: abc
-        run: echo public-${{env.GITHUBRUNNERID}}.zip
+      #- name: abc
+      #  run: echo public-${{env.GITHUBRUNNERID}}.zip
 
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -43,11 +43,11 @@ jobs:
       - name: Verify Public folder
         run: ls -la public
      
-      - name: Upload public folder as Package
-        uses: actions/upload-artifact@v3
-        with:
-          name: public-package
-          path: public
+      #- name: Upload public folder as Package
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: public-package
+      #    path: public
 
       - name: Zip the public folder
         run: zip -r public.zip public/
