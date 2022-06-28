@@ -59,7 +59,7 @@ jobs:
 
       - name: Run JFrog CLI
         run: |
-          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://trialaaa.jfrog.io/artifactory"
+          jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip --url "https://trialaaa.jfrog.io/artifactory" --access-token "cmVmdGtuOjAxOjE2ODc5NjI2NjA6VUFQeFRxZU9aQlJvUTlvN3NuR01kMWFEVDZi"
           
       - name: Unzip the File
         run: |
