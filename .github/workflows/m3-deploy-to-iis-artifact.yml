@@ -53,9 +53,14 @@ jobs:
     needs: build
     steps:
 
+      - name: Install JFrog CLI
+        run: |
+          powershell "Start-Process -Wait -Verb RunAs powershell '-NoProfile iwr https://releases.jfrog.io/artifactory/jfrog-cli/v2-jf/[RELEASE]/jfrog-cli-windows-amd64/jf.exe -OutFile $env:SYSTEMROOT\system32\jf.exe'"
+
       - name: Run JFrog CLI
         run: |
           jf rt dl jfrogintel27june2022-generic-local/public-latest.zip public.zip
+          
       - name: Unzip the File
         run: |
           Expand-Archive .\public.zip . -Force
