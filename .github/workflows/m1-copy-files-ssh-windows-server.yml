@@ -43,14 +43,13 @@ jobs:
         with:
           local: 'public/*'
           remote: 'public/'
-          host: ${{secrets.HOST}}
-          user: ${{secrets.USER}}
+          host: ${{secrets.REMOTE_HOST}}
+          user: ${{secrets.RENOTE_USER}}
           password: ${{secrets.PASSWORD}}
           ssh_options: -o StrictHostKeyChecking=no
           pre_upload: rmdir /s /q public
           post_upload: iisreset /stop && xcopy /s /y public C:\inetpub\wwwroot\ && iisreset /start
       
-
       # - name: Upload to Artifact
       #   run: |
       #     curl -H "X-JFrog-Art-Api:${{ secrets.JFROGKEY }}" -T public.zip "https://nishanthinteldemo.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
