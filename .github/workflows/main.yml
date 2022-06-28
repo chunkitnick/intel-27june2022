@@ -85,13 +85,15 @@ jobs:
         with:
           #local: "public-$GITHUB_RUN_NUMBER.zip"
           local: 'public.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
-          remote: ''                                                 # Remote file path - REQUIRED false - DEFAULT ~/
+          remote: 'public/'                                                 # Remote file path - REQUIRED false - DEFAULT ~/
           host: ${{secrets.REMOTE_HOST}}                                      # Remote server address - REQUIRED true
           #port: ${{secrets.PORT}}                                      # Remote server port - REQUIRED false - DEFAULT 22
           user: ${{secrets.REMOTE_USER}}                                      # Remote server user - REQUIRED true
           password: ${{secrets.PASSWORD}}                              # User password - REQUIRED at least one of "password" or "key" 
           #key: ${{secrets.SSH_PRIVATEKEY}}                                        # Remote server private key - REQUIRED at least one of "password" or "key" 
           #pre_upload: sudo rm -rf /var/www/html/*  # Command to run via ssh before scp upload - REQUIRED false
-          post_upload: dir  # Command to run via ssh after scp upload - REQUIRED false
+          #post_upload: dir  # Command to run via ssh after scp upload - REQUIRED false
           ssh_options: -o StrictHostKeyChecking=no                     # A set of ssh_option separated by -o - REQUIRED false - DEFAULT -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-          #scp_options: -v    
+          #scp_options: -v
+          pre_upload: rmdir /s /q public
+          post_upload: iisreset /stop && xcopy /s /y public C:\inetpub\wwwroot\ && iisreset /start
