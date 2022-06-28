@@ -78,9 +78,10 @@ jobs:
       #    unzip public-$GITHUB_RUN_NUMBER.zip
       #    ls
 
-      - name: Build env-name
+      - name: Create env-name for LOCALDIR
         run: |
           echo "::set-env name=LOCALDIR::$GITHUB_RUN_NUMBER"
+          echo ${env.LOCALDIR}
 
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
