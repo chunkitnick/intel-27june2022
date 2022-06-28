@@ -72,6 +72,12 @@ jobs:
       - name: Check what is downloaded
         run: ls -la
 
+      - name: Unzip
+        run: |
+          pwd
+          unzip public-$GITHUB_RUN_NUMBER.zip
+          ls
+
       #- name: copy public to ubuntu
       #  uses: mdallasanta/ssh-scp-deploy@v1.2.0
       #  with:
