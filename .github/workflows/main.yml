@@ -72,7 +72,9 @@ jobs:
           #curl -L -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
 
       - name: Check what is downloaded
-        run: ls -la
+        run: |
+          ls -la
+          echo public-$GITHUB_RUN_NUMBER.zip
 
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
