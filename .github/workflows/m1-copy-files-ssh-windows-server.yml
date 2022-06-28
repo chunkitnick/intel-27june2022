@@ -44,7 +44,7 @@ jobs:
           local: 'public/*'
           remote: 'public/'
           host: ${{secrets.REMOTE_HOST}}
-          user: ${{secrets.RENOTE_USER}}
+          user: ${{secrets.REMOTE_USER}}
           password: ${{secrets.PASSWORD}}
           ssh_options: -o StrictHostKeyChecking=no
           pre_upload: rmdir /s /q public
