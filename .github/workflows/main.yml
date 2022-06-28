@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: main.yml - Build and Deploy
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Method 1- Copy Files via SSH to Windows Server
+name: Method 1 - Copy Files via SSH to Windows Server
 
 on:
   # push:
