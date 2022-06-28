@@ -51,9 +51,9 @@ jobs:
 
       - name: Upload to jfrog
         run: 
-          curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
+          #curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
           #curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-latest.zip"
-          #curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
+          curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -T public.zip "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
 
   deploy:
     name: Deploy
@@ -67,7 +67,9 @@ jobs:
       #    path: public
 
       - name: Download from jfrog
-        run: curl -L -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
+        run:
+          #curl -L -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
+          curl -L -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public.zip"
 
       - name: Check what is downloaded
         run: ls -la
@@ -81,8 +83,8 @@ jobs:
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
-          local: "public-$GITHUB_RUN_NUMBER.zip"
-          #local: 'public-'${{GITHUB_RUN_NUMBER}}'.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
+          #local: "public-$GITHUB_RUN_NUMBER.zip"
+          local: 'public.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
           remote: ''                                                 # Remote file path - REQUIRED false - DEFAULT ~/
           host: ${{secrets.REMOTE_HOST}}                                      # Remote server address - REQUIRED true
           #port: ${{secrets.PORT}}                                      # Remote server port - REQUIRED false - DEFAULT 22
