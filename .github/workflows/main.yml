@@ -67,7 +67,7 @@ jobs:
       #    path: public
 
       - name: Download from jfrog
-        run: curl -L -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
+        run: curl -H "X-JFrog-Art-Api:${{secrets.JFROG_API_KEY}}" -O "https://trialaaa.jfrog.io/artifactory/jfrogintel27june2022-generic-local/public-$GITHUB_RUN_NUMBER.zip"
 
       - name: Check what is downloaded
         run: ls -la
