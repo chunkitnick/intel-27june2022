@@ -78,12 +78,15 @@ jobs:
       #    unzip public-$GITHUB_RUN_NUMBER.zip
       #    ls
 
+      - name: Build env-name
+        run: |
+          echo "::set-env name=LOCALDIR::public-'${{GITHUB_RUN_NUMBER}}'.zip"
+
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
-        env:
-          LocalDir : "public-${{$GITHUB_RUN_NUMBER}}.zip"
         with:
-          local: {{env.LocalDir}}                                                  # Local file path - REQUIRED false - DEFAULT ./
+          local: $env.LOCALDIR
+          #local: 'public-'${{GITHUB_RUN_NUMBER}}'.zip'                                                  # Local file path - REQUIRED false - DEFAULT ./
           remote: ''                                                 # Remote file path - REQUIRED false - DEFAULT ~/
           host: ${{secrets.REMOTE_HOST}}                                      # Remote server address - REQUIRED true
           #port: ${{secrets.PORT}}                                      # Remote server port - REQUIRED false - DEFAULT 22
