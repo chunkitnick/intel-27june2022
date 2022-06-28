@@ -80,7 +80,7 @@ jobs:
 
       - name: Build env-name
         run: |
-          echo "::set-env name=LOCALDIR::public-'${{GITHUB_RUN_NUMBER}}'.zip"
+          echo "::set-env name=LOCALDIR::$GITHUB_RUN_NUMBER"
 
       - name: copy public to ubuntu
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
