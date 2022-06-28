@@ -1,4 +1,4 @@
-name: Method 3 - Deploy to IIS using Artifactory and JFrog Cli
+name: Method 3- Deploy to IIS using Artifactory and JFrog Cli
 
 on:
   # push:
